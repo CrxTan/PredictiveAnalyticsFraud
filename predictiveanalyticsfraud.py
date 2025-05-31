@@ -33,6 +33,33 @@ Solution Statements
 
 Dataset ini berisi data transaksi bank dengan sejumlah fitur seperti Customer_ID, Transaction_ID, Account_Balance, Transaction_Amount, Merchant_Category, Transaction_Device, Account_Type, Gender, dan target variabel Is_Fraud yang menunjukkan apakah transaksi tersebut fraud atau tidak. Dataset ini mencakup ribuan transaksi dengan proporsi fraud yang relatif kecil dibandingkan transaksi normal.
 
+
+ - Customer_ID: Pengenal unik untuk setiap pelanggan di dalam sistem bank.
+ - Customer_Name: Nama konsumen yang melakukan transaksi.
+ - Gender: Jenis kelamin konsumen (misalnya, Laki-laki, Perempuan, Lainnya).
+ - Age: Usia konsumen pada saat transaksi.
+ - State: Negara bagian tempat pelanggan tinggal.
+ - City: Kota tempat pelanggan tinggal.
+ - Bank_Branch: Cabang bank spesifik tempat pelanggan memiliki rekening.
+ - Account_Type: Jenis rekening yang dimiliki oleh pelanggan (misalnya, Tabungan, Giro).
+ - Transaction_ID: Pengenal unik untuk setiap transaksi.
+ - Transaction_Date: Tanggal terjadinya transaksi.
+ - Transaction_Time: Waktu spesifik saat transaksi dimulai.
+ - Transaction_Amount: Nilai finansial dari transaksi.
+ - Merchant_ID: Pengenal unik untuk pedagang yang terlibat dalam transaksi.
+ - Transaction_Type: Sifat transaksi (misalnya, Penarikan, Setoran, Transfer).
+ - Merchant_Category: Kategori pedagang (misalnya, Ritel, Online, Perjalanan).
+ - Account_Balance: Saldo rekening pelanggan setelah transaksi.
+ - Transaction_Device: Perangkat yang digunakan oleh konsumen untuk melakukan transaksi (misalnya, Seluler, Desktop).
+ - Transaction_Location: Lokasi geografis (misalnya, lintang, bujur) dari transaksi.
+ - Device_Type: Jenis perangkat yang digunakan untuk transaksi (misalnya, Ponsel Pintar, Laptop).
+ - Is_Fraud: Indikator biner (1 atau 0) yang menunjukkan apakah transaksi tersebut curang atau tidak.
+ - Transaction_Currency: Mata uang yang digunakan untuk transaksi (misalnya, USD, EUR).
+ - Customer_Contact: Nomor kontak pelanggan.
+ - Transaction_Description: Deskripsi singkat tentang transaksi (misalnya, pembelian, transfer).
+ - Customer_Email: Alamat email yang terkait dengan rekening konsumen.
+
+
 Dataset terdiri dari 200.000 baris dan 24 kolom dengan tipe data campuran (numerik dan kategorikal), yang merepresentasikan transaksi perbankan dan profil pelanggan.
 
 # Data Loading
@@ -52,7 +79,7 @@ warnings.filterwarnings('ignore')
 
 
 from sklearn.exceptions import UndefinedMetricWarning
-from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import LabelEncoder , StandardScaler
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.linear_model import LogisticRegression
@@ -762,10 +789,8 @@ print(classification_report(y_test, y_pred_knn_smote))
 print("\nKNN Confusion Matrix on Test Set (Original Data, Trained WITH SMOTE):")
 print(confusion_matrix(y_test, y_pred_knn_smote))
 
-# prompt: buatkan saya model logistic regression tanpa hyperparameter tuning dulu
-
 # Inisialisasi model Logistic Regression tanpa hyperparameter tuning
-log_reg = LogisticRegression(random_state=42, solver='liblinear') # 'liblinear' cocok untuk dataset kecil/medium
+log_reg = LogisticRegression(random_state=42, solver='liblinear')
 
 # Latih model pada data pelatihan yang sudah di-resample dengan SMOTE
 # Menggunakan data resampled penting karena masalah class imbalance yang parah
@@ -773,8 +798,7 @@ print("\nMelatih Logistic Regression pada data yang di-resample dengan SMOTE..."
 log_reg.fit(X_train_res, y_train_res)
 print("Pelatihan Logistic Regression selesai.")
 
-# --- Evaluasi Logistic Regression Model pada Test Set ORIGINAL ---
-# Prediksi di test set ASLI (penting!)
+# Evaluasi Logistic Regression Model pada Test Set ORIGINAL
 y_pred_log_reg = log_reg.predict(X_test)
 
 # Cetak laporan klasifikasi dan confusion matrix PADA TEST SET ASLI
@@ -784,7 +808,7 @@ print(classification_report(y_test, y_pred_log_reg))
 print("\nLogistic Regression Confusion Matrix on Test Set (Original Data, Trained WITH SMOTE):")
 print(confusion_matrix(y_test, y_pred_log_reg))
 
-# Opsional: Anda bisa print recall spesifik jika diinginkan
+
 recall_class_1_lr = recall_score(y_test, y_pred_log_reg, pos_label=1)
 print(f"\nRecall for Class 1 (Fraud) on Original Test Set (Logistic Regression): {recall_class_1_lr:.4f}")
 
@@ -836,7 +860,7 @@ print(classification_report(y_test, y_pred_dt_smote))
 print("\nDecision Tree Confusion Matrix on Test Set (Original Data, Trained WITH SMOTE):")
 print(confusion_matrix(y_test, y_pred_dt_smote))
 
-# Opsional: Anda bisa print recall spesifik jika diinginkan
+
 recall_class_1_dt = recall_score(y_test, y_pred_dt_smote, pos_label=1)
 print(f"\nRecall for Class 1 (Fraud) on Original Test Set (Decision Tree): {recall_class_1_dt:.4f}")
 
