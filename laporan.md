@@ -573,7 +573,7 @@ Model Logistic Regression terbaik (setelah tuning pada data training yang di-res
 
 
 *   **Performance:** Logistic Regression, sebagai model linear, mungkin memiliki kesulitan dalam menangkap pola fraud yang kompleks di data ini. **Recall** untuk kelas fraud mungkin lebih rendah dibandingkan model non-linear seperti Tree-based. **Precision** bisa bervariasi tergantung pada parameter regularisasi. **Accuracy** akan tinggi karena TN (Non-Fraud diprediksi Non-Fraud) mendominasi. Confusion Matrix akan memperjelas jumlah False Negatives (fraud tidak terdeteksi) dan False Positives.
-*   **Insight:** Kinerja Logistic Regression mencerminkan sejauh mana hubungan antara fitur dan status fraud dapat dijelaskan secara linear. Parameter regularisasi (`C`, `penalty`) yang dipilih dari tuning akan memengaruhi seberapa kuat model menekan bobot fitur dan mencegah overfitting. Keterbatasan model linear mungkin membatasi kemampuannya untuk mencapai Recall yang sangat tinggi tanpa mengorbankan Precision secara signifikan.
+*   **Insight:** Kinerja Logistic Regression mencerminkan sejauh mana hubungan antara fitur dan status fraud dapat dijelaskan secara linear. Keterbatasan model linear mungkin membatasi kemampuannya untuk mencapai Recall yang sangat tinggi tanpa mengorbankan Precision secara signifikan.
 
 #### Decision Tree
 
