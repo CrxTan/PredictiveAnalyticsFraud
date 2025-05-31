@@ -58,6 +58,32 @@ Dataset yang digunakan berisi informasi transaksi bank sejumlah **200.000** bari
 | 199997           | Dayita Shan             | Female | 41  | Chandigarh                         | Chandigarh     | Chandigarh Branch         | Savings      | f714b758-7539-474d-b676-5fa7e2480141 | 28-01-2025       | ... | Health            | 96225.36        | ATM                | Chandigarh, Chandigarh                   | Desktop     | 0        | INR                  | +9192601XXXXXX   | Charity donation           | dayitaXXXX@XXXXXXX.com  |
 | 199998           | Unnati Vyas             | Female | 28  | Telangana                          | Nizamabad      | Nizamabad Branch          | Checking     | f6903b6a-b582-47ea-95d5-aff16bdec950 | 08-01-2025       | ... | Electronics       | 89599.90        | Voice Assistant    | Nizamabad, Telangana                     | Desktop     | 0        | INR                  | +9197537XXXXXX   | Tourist attraction payment | unnatiXXX@XXXXX.com     |
 | 199999           | Gopal Rout              | Male   | 34  | Nagaland                           | Kohima         | Kohima Branch             | Business     | b44b6e8a-1036-4ec1-b492-5e7ffc7baf6d | 08-01-2025       | ... | Electronics       | 15066.24        | Virtual Card       | Kohima, Nagaland                         | Mobile      | 0        | INR                  | +9193961XXXXXX   | Installment payment        | gopalXXXXX@XXXXXXX.com  |
+### Features description
+ - Customer_ID: Pengenal unik untuk setiap pelanggan di dalam sistem bank.
+ - Customer_Name: Nama konsumen yang melakukan transaksi.
+ - Gender: Jenis kelamin konsumen (misalnya, Laki-laki, Perempuan, Lainnya).
+ - Age: Usia konsumen pada saat transaksi.
+ - State: Negara bagian tempat pelanggan tinggal.
+ - City: Kota tempat pelanggan tinggal.
+ - Bank_Branch: Cabang bank spesifik tempat pelanggan memiliki rekening.
+ - Account_Type: Jenis rekening yang dimiliki oleh pelanggan (misalnya, Tabungan, Giro).
+ - Transaction_ID: Pengenal unik untuk setiap transaksi.
+ - Transaction_Date: Tanggal terjadinya transaksi.
+ - Transaction_Time: Waktu spesifik saat transaksi dimulai.
+ - Transaction_Amount: Nilai finansial dari transaksi.
+ - Merchant_ID: Pengenal unik untuk pedagang yang terlibat dalam transaksi.
+ - Transaction_Type: Sifat transaksi (misalnya, Penarikan, Setoran, Transfer).
+ - Merchant_Category: Kategori pedagang (misalnya, Ritel, Online, Perjalanan).
+ - Account_Balance: Saldo rekening pelanggan setelah transaksi.
+ - Transaction_Device: Perangkat yang digunakan oleh konsumen untuk melakukan transaksi (misalnya, Seluler, Desktop).
+ - Transaction_Location: Lokasi geografis (misalnya, lintang, bujur) dari transaksi.
+ - Device_Type: Jenis perangkat yang digunakan untuk transaksi (misalnya, Ponsel Pintar, Laptop).
+ - Is_Fraud: Indikator biner (1 atau 0) yang menunjukkan apakah transaksi tersebut curang atau tidak.
+ - Transaction_Currency: Mata uang yang digunakan untuk transaksi (misalnya, USD, EUR).
+ - Customer_Contact: Nomor kontak pelanggan.
+ - Transaction_Description: Deskripsi singkat tentang transaksi (misalnya, pembelian, transfer).
+ - Customer_Email: Alamat email yang terkait dengan rekening konsumen.
+
 ### Important features
 
 - `Customer_ID`, `Transaction_ID`
@@ -159,12 +185,13 @@ Berdasarkan tabel tersebut menunjukkan bahwa tidak terdapat data yang hilang mau
 
 ### Check Outlier
 
-![Outlier](https://drive.google.com/uc?id=1aUuxmXHH2t_9GWIhCylSGAMmO4q1YtFQ)
+![Outlier](https://github.com/user-attachments/assets/c38ce510-40cc-4b6b-b594-6bd462e2ccbd)
 
 Dari visualisasi diatas dapat diketahui bahwa tidak terdapat outlier.
 
 ### Univariate Analysis
-![Univariate](https://drive.google.com/uc?export=download&id=1ZvlUgObW98e_tlm0598kNbfnR6gZNBp3)
+
+![Univariate](https://github.com/user-attachments/assets/a82b4358-2664-4085-ac30-87573f7ea0b5)
 
 - **Imbalanced Fraud Data:** Kasus fraud sangat jarang dibandingkan non-fraud. Ini adalah temuan paling penting yang mempengaruhi strategi pemodelan.
 - **No Simple Linear Patterns for Fraud (Age & Amount):** Kejadian fraud tidak secara langsung atau sederhana terkait dengan usia atau jumlah transaksi. Perlu eksplorasi fitur lain dan pola yang lebih kompleks.
@@ -172,7 +199,7 @@ Dari visualisasi diatas dapat diketahui bahwa tidak terdapat outlier.
 - **Geographic Variation in Transaction Value:** Rata-rata jumlah transaksi bervariasi signifikan antar kota, menunjukkan potensi segmentasi geografis.
 - **Initial Demographic Overview:** Visualisasi awal memberikan pemahaman dasar tentang distribusi pelanggan dan aktivitas transaksi berdasarkan kategori seperti jenis akun, sektor merchant, atau lokasi.
 
-![Univariate](https://drive.google.com/uc?export=download&id=10zK8UqYJuOaJI4VjbVbOVe9uOxhbcyis)
+![Univariate](https://github.com/user-attachments/assets/da2c8f58-e4ec-48a7-9841-ac9902270e01)
 
 Dari visualisasi diatas kita dapat informasi bahwa:
 - **Imbalance Data is THE Major Challenge:** Temuan paling konsisten adalah ketidakseimbangan kelas yang parah pada variabel Is_Fraud. Ini adalah prioritas utama untuk diatasi dalam tahap pemodelan deteksi fraud.
@@ -184,7 +211,7 @@ Dari visualisasi diatas kita dapat informasi bahwa:
 
 ### Bivariate Analysis
 
-![Bivariate](https://drive.google.com/uc?export=download&id=1r4siAH4920sZlzE6fCJ3qxvWk4lmPmt0)
+![Bivariate](https://github.com/user-attachments/assets/d1694835-d873-4d51-97eb-3bb5df645184)
 
 Insight yang didapat dari visualisasi diatas yaitu:
 - **Ketidakseimbangan Kelas Fraud yang Ekstrem:** Dataset ini memiliki jumlah transaksi non-fraud yang jauh lebih banyak daripada transaksi fraud. Ini adalah masalah utama yang harus ditangani dalam pemodelan.
@@ -193,7 +220,8 @@ Insight yang didapat dari visualisasi diatas yaitu:
 - **Variasi Geografis:** Terdapat perbedaan signifikan dalam rata-rata jumlah transaksi antar kota, menunjukkan bahwa lokasi adalah faktor penting yang mempengaruhi nilai transaksi.
 - **Pemahaman Dasar Kategorikal:** Visualisasi awal memberikan gambaran frekuensi kategori utama seperti jenis akun, sektor merchant, perangkat transaksi, dan asal negara, yang penting untuk pemahaman umum tentang dataset.
 
-![Bivariate](https://drive.google.com/uc?export=download&id=1KEGRHxwfCaepxisXXyiziv0q5BNGNkyH)
+![Bivariate](https://github.com/user-attachments/assets/18fbe388-7b48-4afb-bd76-ff880dfc774b)
+
 Dari visualisasi diatas kita dapat informasi bahwa:
 - Rata-rata Transaksi yang Konsisten Tinggi: Semua kota yang ditampilkan dalam grafik ini memiliki rata-rata Transaction Amount yang sangat tinggi, berada di kisaran 47.000 hingga 52.000. Tidak ada perbedaan signifikan atau "terendah" yang jelas di antara kota-kota ini, kecuali sedikit fluktuasi di antara nilai rata-rata yang tinggi tersebut.
 
@@ -214,7 +242,8 @@ Analisis:
   - Sebagian besar transaksi memang bernilai tinggi.
   - Perlu melihat box plot atau histogram untuk setiap kota untuk memahami sebaran sebenarnya dan apakah ada outlier yang memengaruhi rata-rata.
 
-![Bivariate](https://drive.google.com/uc?export=download&id=1SqKlphlxLvVGTaFLbimq4Uv00HE8wTTn)
+![Bivariate](https://github.com/user-attachments/assets/fd9e600d-0907-49c5-bf59-e6f61247bf5c)
+
 Insight yang didapat dari visualisasi ini adalah :
 
 - **Ketidakseimbangan Kelas Fraud yang Ekstrem:** Ini adalah temuan paling dominan dan kritis yang berulang di beberapa plot. Jumlah transaksi non-fraud jauh lebih banyak daripada transaksi fraud, mengindikasikan kebutuhan akan strategi khusus dalam pemodelan.
@@ -227,15 +256,14 @@ Insight yang didapat dari visualisasi ini adalah :
 
 - **Pemahaman Frekuensi Kategorikal Dasar:** Visualisasi count plots memberikan pemahaman awal tentang distribusi frekuensi kategori dalam berbagai fitur seperti gender, tipe akun, kategori merchant, dan perangkat transaksi, yang penting untuk pemahaman umum dataset.
 
-![Bivariate](https://drive.google.com/uc?export=download&id=1nirYIxE8DlGh0lh_CUXfrRd8rnQCDW2E)
+![Bivariate](https://github.com/user-attachments/assets/5edfdfe7-452b-4b0e-b020-0aa595a5eebc)
 
 Insight yang didapat yaitu:
 
 - **Rata-rata Transaksi yang Sangat Mirip:** Rata-rata Transaction Amount untuk gender Female dan Male hampir identik. Kedua gender menunjukkan rata-rata transaksi sekitar 49.000 (tidak ada label numerik persis, tapi visualnya sangat dekat dengan 50.000).
 - **Tidak Ada Perbedaan Signifikan:** Berdasarkan grafik ini, tidak ada perbedaan yang signifikan secara praktis dalam rata-rata nilai transaksi antara pria dan wanita.
 
-
-![Bivariate](https://drive.google.com/uc?export=download&id=1w2U1DstAJydMZDIPpMiks33ZnjYLs2A3)
+![Bivariate](https://github.com/user-attachments/assets/d1c3a97d-7b19-4c82-addc-8b31b7a7f97f)
 
 Informasi yang diperoleh dari visualisasi diatas adalah :
 
@@ -250,20 +278,21 @@ Informasi yang diperoleh dari visualisasi diatas adalah :
 
 - **Sebaran Geografis:** Data mencakup banyak negara bagian, menunjukkan bahwa pola transaksi bernilai rata-rata tinggi ini tidak terbatas pada satu atau dua wilayah geografis, melainkan tersebar luas.
 
-![Bivariate](https://drive.google.com/uc?export=download&id=17ASQHC51B6byqMwKafLRrkZcUGXTvFcR)
+![Bivariate](https://github.com/user-attachments/assets/bea9b1ba-b01e-4349-bfe5-000d8be3244b)
 
 Insight baru yang didapat:
 - **Konsistensi Rata-rata Nilai Transaksi:** Sama seperti grafik-grafik sebelumnya (berdasarkan kota, gender, dan negara bagian), rata-rata Transaction Amount di berbagai kategori pedagang juga sangat konsisten dan berada di kisaran yang sangat sempit, yaitu antara 49.000 hingga 49.700.
 - **Perbedaan yang Sangat Kecil:** Perbedaan rata-rata transaksi antara kategori yang berbeda (misalnya, Entertainment ~49.694 sebagai yang tertinggi dan Clothing ~49.544 sebagai yang terendah di antara yang ditampilkan) sangatlah minimal.
 
-![Bivariate](https://drive.google.com/uc?export=download&id=1pTrtLhhQMfGORbdYIqDJCdlGOZ89l3QY)
+![Bivariate](https://github.com/user-attachments/assets/9cc3a1c8-3596-40ef-8add-56825b8990e6)
 
 Insight yang didapat dari visualisasi yaitu:
 
 - **Konsistensi Rata-rata Nilai Transaksi yang Tinggi:** Grafik ini kembali menunjukkan pola yang konsisten: rata-rata Transaction Amount untuk hampir semua jenis perangkat transaksi berada dalam kisaran yang sangat sempit, yaitu antara 48.000 hingga 50.000an.
 - **Perbedaan yang Sangat Minimal:** Meskipun ada sedikit fluktuasi, perbedaan antara rata-rata transaksi tertinggi (POS Terminal ~50.140) dan terendah (Voice Assistant ~48.541) di antara perangkat yang ditampilkan sangatlah kecil, tidak melebihi ~2.000.
 
-![Bivariate](https://drive.google.com/uc?export=download&id=1NwuWYeq4gn2Ix_vcsEtLGmPaAaLVnKQj)
+![Bivariate](https://github.com/user-attachments/assets/76ef8a1e-0eda-4ab9-ba30-26db1e2b8e76)
+
 
 Dari visualisasi diatas insight yang diperoleh adalah :
 
@@ -276,7 +305,9 @@ Kota dengan Rata-rata Transaksi Tertinggi:
 - **Rentang Perbedaan yang Relatif Kecil:** Meskipun ada variasi dari yang tertinggi ke terendah di antara 10 kota ini, perbedaannya hanya sekitar 4.000-an (dari 51.716 hingga 47.554). Ini menunjukkan bahwa kota-kota yang masuk dalam daftar "teratas" ini memiliki pola nilai transaksi rata-rata yang serupa, yaitu tinggi.
 - **Sebaran Geografis:** Kota-kota yang ditampilkan tersebar di berbagai negara bagian (Kerala, Meghalaya, Telangana, West-Bengal, Bihar, Jharkhand, Karnataka, Rajasthan, Chhattisgarh), mengindikasikan bahwa transaksi bernilai rata-rata tinggi tidak terkonsentrasi di satu wilayah saja.
 
-![Bivariate](https://drive.google.com/uc?export=download&id=167sMAux24EKx3BhKaeOfvJUmQkOgNbJj)
+
+![Bivariate](https://github.com/user-attachments/assets/4c011187-f26e-41b9-a861-a631b3b9dcae)
+
 
 Insight dari visualisasi bivariate diatas adalah :
 
@@ -295,7 +326,7 @@ Insight dari visualisasi bivariate diatas adalah :
 
 ### Multivariate analysis
 
-![Multivariate](https://drive.google.com/uc?export=download&id=1VNm2OwZykYs100c6B2GWYHJ-_xHEzNPR)
+![Multivariate](https://github.com/user-attachments/assets/f87d2259-10cd-4b79-9946-2ed9950acac0)
 
 Insight dari visualisasi diatas yaitu:
 
@@ -319,7 +350,8 @@ Insight dari visualisasi diatas yaitu:
 
 - **Pentingnya Konteks Temporal:** Data transaksi sangat dipengaruhi oleh waktu. Informasi waktu transaksi (dari file uu.jpg) akan sangat penting untuk feature engineering terkait time-series (misalnya, time_since_last_transaction, number_of_transactions_in_last_hour). Ini tidak terlihat di grafik ini tetapi krusial untuk deteksi fraud.
 
-![Multivariate](https://drive.google.com/uc?export=download&id=1UAMzxQfMdgvIlF4aPwflXQJL5Sx-3VNR)
+![Multivariate](https://github.com/user-attachments/assets/b7cd1e94-b7c7-4113-a48a-f272dbdcdede)
+
 
 Insight yang diketahui dari visualisasi diatas yaitu :
 
@@ -338,7 +370,8 @@ Insight yang diketahui dari visualisasi diatas yaitu :
   - Fitur Waktu: Transaction Date dan Transaction Time (misalnya, transaksi fraud lebih sering terjadi di luar jam kerja normal atau pada tanggal tertentu).
   - Perilaku Anomali: Perilaku yang menyimpang dari pola normal pelanggan (misalnya, tiba-tiba melakukan transaksi di kategori merchant atau perangkat yang belum pernah digunakan sebelumnya, atau jumlah transaksi yang tidak biasa). Ini memerlukan time-series feature engineering di level pelanggan.
 
-![Multivariate](https://drive.google.com/uc?export=download&id=18xlKSUFHCxHFRzeyIqbLTSxeE9KeUk7d)
+![Multivariate](https://github.com/user-attachments/assets/9e8ae5ed-f426-49a7-a00a-7e9a90b6a0cc)
+
 
 Insight Corelation heatmapnya yaitu :
 
@@ -408,17 +441,19 @@ Tiga algoritma klasifikasi berbeda dieksplorasi untuk membandingkan kemampuan me
 Untuk memastikan model yang dibangun robust dan memiliki performa optimal dalam mendeteksi fraud, beberapa strategi utama diterapkan:
 
 *   **Data Training Resampled (SMOTE):** Model dilatih pada set pelatihan yang telah diseimbangkan menggunakan SMOTE. Ini membantu model belajar dari kasus fraud (kelas minoritas) yang jumlahnya sedikit.
-*   **Stratified K-Fold Cross Validation:** Digunakan selama tahap hyperparameter tuning (`GridSearchCV` atau `RandomizedSearchCV`). Stratified K-Fold memastikan bahwa setiap 'fold' memiliki proporsi kelas target (fraud vs. non-fraud) yang sama, penting untuk data yang tidak seimbang.
+*   **Stratified K-Fold Cross Validation:** Digunakan selama tahap hyperparameter tuning (`GridSearchCV`). Stratified K-Fold memastikan bahwa setiap 'fold' memiliki proporsi kelas target (fraud vs. non-fraud) yang sama, penting untuk data yang tidak seimbang.
 *   **Hyperparameter Tuning (`GridSearchCV`):** Digunakan untuk mencari kombinasi hyperparameter terbaik untuk setiap model. Metrik evaluasi yang digunakan dalam tuning adalah **Recall** dengan `pos_label=1` (fokus pada meminimalkan False Negatives, yaitu kasus fraud yang tidak terdeteksi).
 *   **Evaluasi pada Test Set Original:** Model terbaik dari tuning (yang dilatih pada data training yang sudah di-resample) dievaluasi pada set pengujian **asli** (tidak seimbang) untuk mendapatkan estimasi performa yang realistis. Metrik evaluasi yang digunakan mencakup Accuracy, Precision, Recall, F1-Score, Confusion Matrix, ROC AUC, dan Precision-Recall Curve.
 
 ### Detail Model dan Tuning Parameter:
 
-Berikut adalah rincian lebih lanjut mengenai model, parameter tuning yang *sesuai dengan yang ada di kode Anda* (terutama untuk KNN, Decision Tree, dan Random Forest), serta kelebihan dan kekurangannya dalam konteks deteksi fraud:
+Berikut adalah rincian lebih lanjut mengenai model, parameter tuning yang (terutama untuk KNN, Decision Tree, dan Logistic regression), serta kelebihan dan kekurangannya dalam konteks deteksi fraud:
 
 #### K-Nearest Neighbor (KNN)
 
-*   **Konsep:** Mengklasifikasikan titik data berdasarkan kelas dari `n_neighbors` tetangga terdekatnya, diukur dengan metrik jarak.
+*   **Konsep:** KNN adalah algoritma klasifikasi lazy learning berbasis instansi. Artinya, algoritma ini tidak membangun model secara eksplisit selama tahap pelatihan. Prediksi untuk data baru dilakukan dengan mencari "tetangga terdekat" dari data baru tersebut di antara data pelatihan.
+*   **Cara Kerja:**
+    * Algoritma hanya menyimpan seluruh dataset pelatihan beserta label kelasnya. Dalam kasus deteksi fraud, Jika suatu transaksi baru memiliki pola fitur (misalnya, jumlah transaksi, kategori merchant, perangkat) yang mirip dengan mayoritas transaksi yang diketahui sebagai fraud di data pelatihan (berdasarkan jarak fitur), maka transaksi tersebut kemungkinan akan diklasifikasikan sebagai fraud.
 *   **Parameter Tuning (`GridSearchCV`):**
     *   `n_neighbors`: Jumlah tetangga yang dipertimbangkan. Rentang yang diuji: `[3, 5, 7, 9, 11]`.
     *   `weights`: Cara membobot kontribusi tetangga. 'uniform' (semua bobot sama) atau 'distance' (tetangga lebih dekat memiliki bobot lebih besar).
@@ -437,12 +472,9 @@ Berikut adalah rincian lebih lanjut mengenai model, parameter tuning yang *sesua
       
 #### Logistic Regression
 
-*   **Konsep:** Model linear yang memprediksi probabilitas kelas biner.
-*   **Parameter Tuning (`GridSearchCV`):** Sesuai kode Anda, tuning dilakukan pada parameter `C` dan `penalty`.
-    *   `C`: Inverse of regularization strength. `[0.001, 0.01, 0.1, 1, 10, 100]`. Nilai yang lebih kecil = regularisasi lebih kuat.
-    *   `penalty`: Jenis regularisasi. `['l1', 'l2', 'elasticnet', 'none']`. (Catatan: Beberapa solver tidak mendukung semua penalty, `elasticnet` memerlukan `l1_ratio`, dan `none` tidak memerlukan regularisasi).
-    *   `solver`: Algoritma optimisasi. `['liblinear', 'saga']`. (Dipilih karena kompatibilitas dengan penalty l1/l2/elasticnet).
-    *   `l1_ratio`: Parameter mixing untuk 'elasticnet'. `[0.5]`.
+*   **Konsep:** Logistic Regression adalah algoritma klasifikasi linear yang digunakan untuk memprediksi probabilitas suatu instansi termasuk dalam kelas tertentu (dalam kasus ini, probabilitas suatu transaksi adalah fraud). Meskipun namanya mengandung "Regression", ini adalah algoritma klasifikasi.
+*   **Cara Kerja:** Logistic Regression mencoba menemukan hubungan linear antara fitur-fitur transaksi dan probabilitas transaksi menjadi fraud. Bobot positif untuk fitur tertentu menunjukkan bahwa fitur tersebut meningkatkan kemungkinan fraud, sementara bobot negatif menurunkannya.
+*   **Parameter:** random_state=42, solver='liblinear', tanpa hyperparameter tuning.
 *   **Kelebihan:**
     *   Cepat dilatih dan diinterpretasikan.
     *   Output berupa probabilitas, berguna untuk penyesuaian ambang batas deteksi fraud.
@@ -454,8 +486,9 @@ Berikut adalah rincian lebih lanjut mengenai model, parameter tuning yang *sesua
  
 #### Decision Tree
 
-*   **Konsep:** Membangun struktur pohon keputusan.
-*   **Parameter Tuning (`GridSearchCV`):** Sesuai kode Anda, tuning dilakukan pada parameter `max_depth`, `min_samples_split`, dan `min_samples_leaf`.
+*   **Konsep:** Decision Tree adalah algoritma klasifikasi (atau regresi) berbasis pohon. Algoritma ini membangun struktur pohon di mana setiap node internal mewakili "tes" pada salah satu fitur, setiap cabang mewakili hasil tes tersebut, dan setiap node daun mewakili kelas hasil (fraud atau non-fraud).
+*   **Cara Kerja:** 
+*   **Parameter Tuning (`GridSearchCV`):** Sesuai kode, tuning dilakukan pada parameter `max_depth`, `min_samples_split`, dan `min_samples_leaf`.
     *   `max_depth`: Kedalaman maksimum pohon. `[None, 10, 20, 30, 40, 50]`. `None` berarti tidak ada batasan.
     *   `min_samples_split`: Jumlah minimum sampel yang diperlukan untuk memecah node. `[2, 5, 10]`.
     *   `min_samples_leaf`: Jumlah minimum sampel yang harus ada di node daun. `[1, 2, 4]`.
@@ -611,7 +644,7 @@ Proyek ini berhasil menunjukkan bahwa deteksi fraud menggunakan machine learning
 
 ## Referensi
 
-[[1] Association of Certified Fraud Examiners (ACFE), *Report to the Nations*, 2022.] (https://www.acfe.com/about-the-acfe/newsroom-for-media/press-releases/press-release-detail?s=2022-RTTN-launch)
-[[2] Scikit-learn documentation] (https://scikit-learn.org)  
-[[3] Imbalanced Learn & SMOTE] (https://imbalanced-learn.org)  
-[[4]Pan, E. (2024). Machine Learning in Financial Transaction Fraud Detection and Prevention. *Transactions on Economics, Business and Management Research*, *5*(BEMS 2024), 243-249.](https://wepub.org/index.php/TEBMR/article/view/1045)
+[Association of Certified Fraud Examiners (ACFE), *Report to the Nations*, 2022.](https://www.acfe.com/about-the-acfe/newsroom-for-media/press-releases/press-release-detail?s=2022-RTTN-launch)
+[Scikit-learn documentation](https://scikit-learn.org)  
+[Imbalanced Learn & SMOTE](https://imbalanced-learn.org)  
+[ Pan, E. (2024). Machine Learning in Financial Transaction Fraud Detection and Prevention. *Transactions on Economics, Business and Management Research*, *5*(BEMS 2024), 243-249.](https://wepub.org/index.php/TEBMR/article/view/1045)
