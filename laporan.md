@@ -408,19 +408,23 @@ Tahap Data Preparation pada proyek ini bertujuan untuk mengubah data mentah menj
 1.  **Feature Engineering Sederhana:**
     *   Berdasarkan kolom 'Age' dan 'Transaction_Date', dibuat fitur-fitur baru yang relevan.
     *   Kolom 'Age' dikategorikan menjadi 'Age_Group' menggunakan binning untuk menciptakan fitur kategorikal berdasarkan rentang usia.
-    *   Kolom 'Transaction_Date' dipecah menjadi komponen waktu seperti tahun, bulan, hari, hari dalam seminggu, dan jam untuk mengekstrak pola temporal yang mungkin relevan.  
-2.  **Encoding Variabel Kategorikal:**
+    *   Kolom 'Transaction_Date' dipecah menjadi komponen waktu seperti tahun, bulan, hari, hari dalam seminggu, dan jam untuk mengekstrak pola temporal yang mungkin relevan.
+2.  **Menghapus Beberapa Kolom Yang Sudah Tidak Relevan:**
+    - 'Customer_Contact', 'Customer_Email', 'Customer_Name', 'Customer_ID', 'Transaction_ID', 'Merchant_ID': Kolom-kolom ini umumnya dihapus dalam tahap persiapan data untuk pemodelan karena mereka biasanya merupakan pengenal unik atau informasi pribadi yang tidak relevan atau tidak boleh digunakan sebagai fitur untuk memprediksi fraud. Menggunakan ID unik sebagai fitur bisa menyebabkan overfitting karena model akan belajar pola spesifik untuk setiap ID, bukan pola umum yang membedakan fraud dari non-fraud. Informasi pribadi juga seringkali tidak digunakan karena alasan privasi dan regulasi.
+    - 'Transaction_Time', 'Transaction_Date': Kolom-kolom ini berisi informasi tanggal dan waktu lengkap. Setelah Saya melakukan feature engineering dengan mengekstrak komponen waktu seperti tahun, bulan, hari, hari dalam seminggu, dan jam dari kolom Transaction_Date, kolom asli Transaction_Date dan Transaction_Time menjadi redundant (berlebihan) dan tidak lagi diperlukan dalam bentuk aslinya untuk pemodelan, karena informasinya sudah ada di fitur-fitur baru.
+    - 'Age': Kolom Age dihapus karena Saya sudah membuat fitur kategorikal Age_Group berdasarkan Age menggunakan pd.cut. Fitur Age_Group yang sudah di-one-hot encode akan digunakan sebagai pengganti Age.
+3.  **Encoding Variabel Kategorikal:**
     *   Mengubah fitur kategorikal menjadi representasi numerik.
     *   Untuk fitur nominal seperti 'Transaction_Type' dan 'Age_Group' yang baru dibuat, digunakan **One-Hot Encoding** untuk menciptakan kolom biner baru untuk setiap kategori, mencegah asumsi urutan.
     *   Untuk kolom kategorikal lain yang tersisa ('Merchant_Category', 'Transaction_Device', dll.), digunakan **Label Encoding** untuk mengubah setiap nilai unik menjadi bilangan bulat unik.
-3.  **Scaling Variabel Numerik:**
+4.  **Scaling Variabel Numerik:**
     *   Variabel numerik diskalakan menggunakan `StandardScaler` agar memiliki rata-rata nol dan varians satu. Ini penting untuk algoritma yang peka terhadap skala fitur seperti K-Nearest Neighbors (KNN) dan Logistic Regression.
-4.  **Pembagian Data (Train-Test Split):**
-    *   Dataset dibagi menjadi set pelatihan (70%) dan set pengujian (30%) menggunakan `train_test_split`. Pembagian ini dilakukan *setelah* preprocessing (feature engineering, encoding, scaling) pada seluruh dataset, yang **perlu diwaspadai** karena potensi data leakage (informasi dari set pengujian bisa sedikit merembes ke proses scaling). Namun, dalam kode Anda, scaling dilakukan pada `df` penuh sebelum split. Pendekatan yang lebih aman adalah split terlebih dahulu, lalu fit scaler hanya pada data training dan transform pada data training dan testing.
+5.  **Pembagian Data (Train-Test Split):**
+    *   Dataset dibagi menjadi set pelatihan (70%) dan set pengujian (30%) menggunakan `train_test_split`. Pembagian ini dilakukan *setelah* preprocessing (feature engineering, encoding, scaling) pada seluruh dataset, yang **perlu diwaspadai** karena potensi data leakage (informasi dari set pengujian bisa sedikit merembes ke proses scaling). Namun, dalam kode Saya, scaling dilakukan pada `df` penuh sebelum split. Pendekatan yang lebih aman adalah split terlebih dahulu, lalu fit scaler hanya pada data training dan transform pada data training dan testing.
     *   Target variabel `Is_Fraud` dipisahkan dari fitur (`X`).
-5.  **Penanganan Ketidakseimbangan Kelas (SMOTE):**
+6.  **Penanganan Ketidakseimbangan Kelas (SMOTE):**
     *   Untuk mengatasi ketidakseimbangan kelas yang parah, teknik `SMOTE (Synthetic Minority Oversampling Technique)` diterapkan. SMOTE menghasilkan sampel sintetis dari kelas minoritas (fraud) untuk menyeimbangkan jumlah kelas dalam set pelatihan.
-    *   **Penting:** SMOTE hanya diterapkan pada **set pelatihan** (`X_train`, `y_train`) untuk menghindari data leakage dari set pengujian. Set pengujian (`X_test`, `y_test`) dibiarkan dalam distribusi aslinya untuk evaluasi performa model yang realistis.
+    *   SMOTE hanya diterapkan pada **set pelatihan** (`X_train`, `y_train`) untuk menghindari data leakage dari set pengujian. Set pengujian (`X_test`, `y_test`) dibiarkan dalam distribusi aslinya untuk evaluasi performa model yang realistis.
 
 ---
 
