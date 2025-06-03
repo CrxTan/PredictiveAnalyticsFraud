@@ -493,9 +493,10 @@ Berikut adalah rincian lebih lanjut mengenai model, parameter tuning yang (terut
 *   **Konsep:** Decision Tree adalah algoritma klasifikasi (atau regresi) berbasis pohon. Algoritma ini membangun struktur pohon di mana setiap node internal mewakili "tes" pada salah satu fitur, setiap cabang mewakili hasil tes tersebut, dan setiap node daun mewakili kelas hasil (fraud atau non-fraud).
 *   **Cara Kerja:** 
 *   **Parameter Tuning (`GridSearchCV`):** Sesuai kode, tuning dilakukan pada parameter `max_depth`, `min_samples_split`, dan `min_samples_leaf`.
-    *   `max_depth`: Kedalaman maksimum pohon. `[None, 10, 20, 30, 40, 50]`. `None` berarti tidak ada batasan.
+    *   `max_depth`: Kedalaman maksimum pohon. `[5, 10, 15, 20]`. `None` berarti tidak ada batasan.
     *   `min_samples_split`: Jumlah minimum sampel yang diperlukan untuk memecah node. `[2, 5, 10]`.
     *   `min_samples_leaf`: Jumlah minimum sampel yang harus ada di node daun. `[1, 2, 4]`.
+    *   `criterion` : criterion adalah parameter yang menentukan fungsi untuk mengukur kualitas atau "kemurnian" pemisahan (split) pada setiap simpul pohon keputusan. Parameter yang digunakan `['gini', 'entropy']`
 *   **Kelebihan:**
     *   Mudah diinterpretasikan (jika pohon tidak terlalu dalam).
     *   Dapat menangkap hubungan non-linear dan interaksi fitur.
